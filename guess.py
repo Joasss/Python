@@ -1,70 +1,85 @@
 import random
 
 while True:
-    print("____________________________________")
-    print()
-    raw_lowestnumber = input(
-        "Please enter the lowest number that you want to me to guess a number between: ")
-    raw_highestnumber = input(
-        "Please enter the highest number that you want to me to guess a number between: ")
-    raw_guesses = input("Please enter the amount of guesses you want to do: ")
+    print("____________________________________");
+    print();
 
-    lowestnumber = int(raw_lowestnumber)
-    highestnumber = int(raw_highestnumber)
-    guesses = int(raw_guesses)
-    made_guesses = int(0)
+    rawLowestNumber = input("Please enter the lowest number that you want to me to guess a number between: ");
+    rawHighestNumber = input("Please enter the highest number that you want to me to guess a number between: ");
+    rawGuesses = input("Please enter the amount of guesses you want to do: ");
 
-    if isinstance(lowestnumber, int) and isinstance(highestnumber, int):
-        if lowestnumber > highestnumber:
-            print("You entered invalid numbers!")
-            break
-        total = lowestnumber + highestnumber
+    lowestNumber = int(rawLowestNumber);
+    highestNumber = int(rawHighestNumber);
+    guesses = int(rawGuesses);
+    madeGuesses = int(0);
+
+
+    if isinstance(lowestNumber, int) and isinstance(highestNumber, int):
+
+        if lowestNumber > highestNumber:
+            print("The lowest number cannot be higher than the highest number.");
+            break;
+        total = lowestNumber + highestNumber;
+
         if total < 2:
-            print("You entered invalid numbers!")
-            break
-        if lowestnumber < 1:
-            print("You entered invalid numbers!")
-            break
+            print("Your numbers need to be higher in order to play.");
+            break;
+
+        if lowestNumber < 1:
+            print("The lowest number cannot be below 1.");
+            break;
+
         if guesses < 0:
-            print("You entered an invalid amount of guesses!")
-            break
-        print()
-        print("I am going to guess a number between " +
-              str(lowestnumber) + " and " + str(highestnumber) + "!")
-        print()
+            print("The amount of guesses cannot be below 0.");
+            break;
 
-        lowestnumber -= 1
-        highestnumber -= 1
-        rndIntRaw = random.randint(lowestnumber, highestnumber)
-        rndIntInt = int(rndIntRaw)
-        rndInt = rndIntInt - 1
+        if guesses > 8:
+            print("The amount of guesses cannot be higher than 8.");
+            break;
 
-        if guesses > total:
-            guesses = total-1
+        print();
+        print("I am going to guess a number between " + str(lowestNumber) + " and " + str(highestNumber) + "!");
+        print();
 
-        while made_guesses < guesses:
-            made_guesses + 1
-            guess_raw = input("Guess the number between " +
-                              str(lowestnumber + 1) + " and " + str(highestnumber + 1) + ": ")
-            while guess_raw is None:
-                guess_raw = input("Guess the number between " +
-                                  str(lowestnumber + 1) + " and " + str(highestnumber + 1) + ": ")
-            guess = int(guess_raw)
+        lowestNumber -= 1;
+        highestNumber -= 1;
+
+        rndIntRaw = random.randint(lowestNumber, highestNumber);
+        rndIntInt = int(rndIntRaw);
+        rndInt = rndIntInt;
+
+
+        if guesses > total: guesses = total-1;
+
+        while madeGuesses < guesses:
+            madeGuesses + 1;
+            guessRaw = input("Guess the number between " + str(lowestNumber + 1) + " and " + str(highestNumber + 1) + ": ");
+
+            while guessRaw is None:
+                guessRaw = input("Guess the number between " + str(lowestNumber + 1) + " and " + str(highestNumber + 1) + ": ");
+
+            guess = int(guessRaw);
+
             if isinstance(guess, int):
                 if guess == rndInt:
-                    print("Correct! The number was: " + str(rndInt) + "!")
-                    break
+                    print("Correct! The number was: " + str(rndInt) + "! You guessed it in " + str(madeGuesses) + "guesses.");
+                    break;
+
                 if guess > rndInt:
-                    print("The number is lower!")
+                    print("The number is lower! You have made " + str(madeGuesses) + "guesses.");
+
                 if guess < rndInt:
-                    print("The number is higher!")
+                    print("The number is higher! You have made " + str(madeGuesses) + "guesses.");
 
     else:
-        print("You entered invalid numbers!")
+        print("You entered invalid numbers!");
 
-    again = input("Do you want to play again? (Y/N) ").lower()
-    validagain = ['y', 'yes', 'n', 'no']
-    while again not in validagain:
-        again = input("Do you want to play again? Respond with (Y/N) ").lower()
+    again = input("Do you want to play again? (Y/N) ").lower();
+
+    validAgain = ['y', 'yes', 'n', 'no'];
+
+    while again not in validAgain:
+        again = input("Do you want to play again? Respond with (Y/N) ").lower();
+
     if again == "n" or again == "no":
-        break
+        break;
